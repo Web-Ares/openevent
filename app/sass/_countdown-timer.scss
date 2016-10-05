@@ -1,0 +1,71 @@
+.countdown-timer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 262px;
+  height: 58px;
+  margin: 0 auto;
+  padding: 9px 15px 5px;
+  background-color: rgba(0,0,0,.2);
+  color: #fff;
+  font-size: 17px;
+  line-height: 21px;
+  text-align: center;
+  text-transform: uppercase;
+
+  &:before, &:after {
+    top: 0;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0,0,0,.2);
+  }
+
+  &:before{
+    right: 100%;
+    border-left-color: rgba(136,183,213,0);
+    border-width: 29px 0 29px 15px;
+  }
+
+  &:after{
+    left: 100%;
+    border-right-color: rgba(136,183,213,0);
+    border-width: 29px 15px 29px 0;
+  }
+
+  b{
+    font-size: 21px;
+    @include proximanova-bold
+  }
+
+}
+
+@media (min-width: $pre-desktop) {
+
+  .countdown-timer {
+    width: 375px;
+    height: 84px;
+    margin: 0 auto;
+    padding: 9px 26px 5px;
+    font-size: 24px;
+    line-height: 30px;
+
+    &:before{
+      border-width: 42px 0 42px 15px;
+    }
+
+    &:after{
+      border-width: 42px 15px 42px 0;
+    }
+
+    b{
+      font-size: 30px;
+    }
+
+  }
+
+}

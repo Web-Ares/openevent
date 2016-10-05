@@ -1,0 +1,81 @@
+.site {
+  min-height: 100%;
+  min-width: 320px;
+  @include proximanova-reg;
+  overflow: hidden;
+
+  &__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    height: 67px;
+    background-color: transparent;
+    -webkit-transition:  -webkit-transform .5s ease, background-color .3s ease, top .3s ease, height .3s ease;
+    transition: transform .5s ease, background-color .3s ease, top .3s ease, height .3s ease;
+
+    &-layout{
+      position: relative;
+      max-width: 1190px;
+      margin: 0 auto;
+      padding: 0 13px;
+    }
+
+    &_hidden{
+      -webkit-transform: translateY( -90px );
+      transform: translateY( -90px );
+    }
+
+    &.fixed{
+      height: 67px;
+      background-color: rgba(98,54,158,.95);
+
+      .logo{
+        top: 20px;
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .site {
+
+    &__header {
+      height: 77px;
+
+      &-layout{
+        padding: 0 40px;
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .site {
+
+    &__header {
+
+      &-layout{
+        padding: 18px 0 0 3px;
+      }
+
+      &.fixed{
+        height: 81px;
+        top: -4px;
+      }
+
+    }
+
+  }
+
+}
+

@@ -1,0 +1,182 @@
+.time-schedule {
+  color: #fff;
+
+  &__content{
+    position: relative;
+    margin-bottom: 43px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #fff;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: left;
+
+    &:after{
+      top: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: #fff;
+      border-bottom-color: rgba(136, 183, 213, 0);
+      border-width: 11px 9px 7px 9px;
+      margin-left: -9px;
+    }
+
+  }
+
+  &__title{
+    margin-bottom: 16px;
+    @include proximanova-bold;
+    font-size: 30px;
+    line-height: 27px;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    span{
+      color: #51caaf;
+    }
+
+  }
+
+  &__info{
+    display: block;
+    margin-bottom: 21px;
+    @include proximanova-bold;
+    color: #51caaf;
+    font-size: 18px;
+    line-height: 16px;
+    text-transform: uppercase;
+
+    span{
+
+      &:after {
+        margin: 0 5px 0 9px;
+        content: '/';
+      }
+
+      &:last-child:after{
+        display: none;
+      }
+
+    }
+
+  }
+
+  &__save{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px auto 26px;
+    @include fontawesome-webfont;
+
+    &_desktop{
+      display: none;
+    }
+
+    &-item{
+      height: 34px;
+      width: 34px;
+      margin: 0 8px;
+      padding-top: 10px;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,.2);
+      color: #fff;
+      font-size: 16px;
+    }
+
+  }
+
+  &__promo{
+    margin-bottom: 15px;
+    @include proximanova-bold;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  &__text{
+    height: 57px;
+    overflow: hidden;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .time-schedule {
+    width: 295px;
+
+    &__content{
+      margin-bottom: 40px;
+    }
+
+    &__promo{
+      margin-bottom: 8px;
+    }
+
+    &__save-item{
+      padding-top: 2px;
+    }
+
+  }
+
+}
+
+@media (min-width: $pre-desktop) {
+
+  .time-schedule {
+    width: 500px;
+
+    &__title{
+      margin-bottom: 30px;
+      font-size: 54px;
+      line-height: 47px;
+      white-space: nowrap;
+    }
+
+    &__content{
+      margin-bottom: 40px;
+      padding-bottom: 18px;
+      font-size: 20px;
+      line-height: 23px;
+    }
+
+    &__info{
+      margin-bottom: 36px;
+      font-size: 24px;
+
+      span:after{
+        margin: 0 6px 0 14px
+      }
+
+    }
+
+    &__promo{
+      margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    &__save{
+      margin: 20px auto 0;
+
+      &_mobile{
+        display: none;
+      }
+
+      &_desktop{
+        display: flex;
+      }
+
+    }
+
+    &__text{
+      height: auto;
+    }
+
+  }
+
+}

@@ -1,0 +1,34 @@
+.logo {
+  position: absolute;
+  top: 21px;
+  left: 13px;
+  width: 110px;
+  transition: top .3s ease;
+  -webkit-transition: top .3s ease;
+
+  img{
+    display: block;
+    width: 100%;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .logo {
+    top: 36px;
+    left: 39px;
+    width: 150px;
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .logo {
+    top: 28px;
+    left: 0;
+    width: 169px;
+  }
+
+}

@@ -1,0 +1,98 @@
+.contact-us {
+  position: relative;
+  padding: 43px 0 30px;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 30px;
+  text-align: center;
+
+  &:before{
+    position: absolute;
+    top: -18px;
+    left: -100px;
+    bottom: -18px;
+    right: -100px;
+    background-color: #51caaf;
+    transform: rotate(-2.6deg);
+    -webkit-transform: rotate(-2.6deg);
+    content: '';
+    z-index: 1;
+  }
+
+  &__layout{
+    position: relative;
+    padding: 0 13px;
+    z-index: 2;
+  }
+
+  a{
+    color: #fff;
+    cursor: default;
+  }
+
+  dl{
+    margin-bottom: 40px;
+  }
+
+  dt{
+    margin-bottom: 18px;
+    @include proximanova-bold;
+    font-size: 20px;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .contact-us {
+    padding-bottom: 11px;
+
+    &:before{
+      transform: rotate(-1.1deg);
+      -webkit-transform: rotate(-1.1deg);
+    }
+
+    &__layout {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: stretch;
+      padding: 0 40px;
+    }
+
+    dl{
+      width: 50%;
+      margin-bottom: 60px;
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .contact-us {
+    padding: 42px 0 78px;
+
+    &:before{
+      transform: rotate(-1.2deg);
+      -webkit-transform: rotate(-1.2deg);
+    }
+
+    &__layout {
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      max-width: 1190px;
+      margin: 0 auto;
+      padding: 0 25px;
+    }
+
+    dl{
+      width: 20%;
+      text-align: left;
+    }
+
+  }
+
+}

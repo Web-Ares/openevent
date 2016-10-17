@@ -1,0 +1,31 @@
+.video {
+  width: 293px;
+  height: 165px;
+  margin: 0 auto 50px;
+
+  > * {
+    display: block;
+    width: inherit;
+    height: inherit;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .video {
+    width: 698px;
+    height: 394px;
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .video {
+    width: 1044px;
+    height: 587px;
+    margin-bottom: 110px;
+  }
+
+}

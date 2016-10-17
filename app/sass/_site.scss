@@ -8,12 +8,12 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 3;
     width: 100%;
     height: 67px;
     background-color: transparent;
     -webkit-transition:  -webkit-transform .5s ease, background-color .3s ease, top .3s ease, height .3s ease;
     transition: transform .5s ease, background-color .3s ease, top .3s ease, height .3s ease;
+    z-index: 10;
 
     &-layout{
       position: relative;
@@ -39,6 +39,100 @@
 
   }
 
+  &__content {
+    position: relative;
+    padding: 20px 0 58px;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+
+    &:before{
+      position: absolute;
+      top: -18px;
+      left: -100px;
+      bottom: -18px;
+      right: -100px;
+      background-color: #fff;
+      transform: rotate(-2.6deg);
+      -webkit-transform: rotate(-2.6deg);
+      content: '';
+      z-index: 1;
+    }
+
+    h1{
+      margin-bottom: 62px;
+      @include proximanova-bold;
+      font-size: 54px;
+      line-height: 1;
+      text-align: center;
+    }
+
+    h2{
+      margin-bottom: 19px;
+      @include proximanova-bold;
+      font-size: 36px;
+      line-height: 1;
+      text-align: center;
+    }
+
+    h3{
+      margin-bottom: 21px;
+      @include proximanova-bold;
+      font-size: 24px;
+      line-height: 1;
+      text-align: center;
+    }
+
+    p{
+      margin-bottom: 49px;
+    }
+
+    a{
+      color: #0485c2;
+    }
+
+    img{
+      max-width: 100%;
+      margin-bottom: 46px;
+    }
+
+    &-layout{
+      position: relative;
+      max-width: 1190px;
+      margin: 0 auto;
+      padding: 0 15px;
+      z-index: 2;
+    }
+
+  }
+
+  &__footer {
+    position: relative;
+    padding: 17px 0 50px;
+
+    &:before{
+      position: absolute;
+      top: -18px;
+      left: -100px;
+      bottom: -18px;
+      right: -100px;
+      background-color: #7a43c6;
+      transform: rotate(-2.6deg);
+      -webkit-transform: rotate(-2.6deg);
+      content: '';
+      z-index: 1;
+    }
+
+    &-layout{
+      position: relative;
+      max-width: 1190px;
+      margin: 0 auto;
+      padding: 0 13px;
+      z-index: 2;
+    }
+
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {
@@ -47,6 +141,55 @@
 
     &__header {
       height: 77px;
+
+      &-layout{
+        padding: 0 40px;
+      }
+
+      &.fixed{
+
+        .logo{
+          top: 15px;
+        }
+
+        .menu-btn {
+          top: 18px;
+        }
+
+      }
+
+    }
+
+    &__content{
+      /*padding: 52px 40px 75px;*/
+      padding: 15px 0 93px;
+
+      &:before{
+        transform: rotate(-1.1deg);
+        -webkit-transform: rotate(-1.1deg);
+      }
+
+      h1 {
+        margin-bottom: 63px;
+      }
+
+      img{
+        margin-bottom: 58px;
+      }
+
+      &-layout{
+        padding: 0 40px;
+      }
+
+    }
+
+    &__footer {
+      padding: 36px 0 50px;
+
+      &:before{
+        transform: rotate(-1.1deg);
+        -webkit-transform: rotate(-1.1deg);
+      }
 
       &-layout{
         padding: 0 40px;
@@ -61,6 +204,14 @@
 @media (min-width: $desktop) {
 
   .site {
+    position: relative;
+    min-height: 100%;
+
+    &:after{
+      display: block;
+      height: 182px;
+      content: '';
+    }
 
     &__header {
 
@@ -71,6 +222,54 @@
       &.fixed{
         height: 81px;
         top: -4px;
+
+        .logo{
+          top: 21px;
+        }
+
+      }
+
+    }
+
+    &__content{
+      padding: 63px 0 80px;
+
+      &:before{
+        transform: rotate(-1.2deg);
+        -webkit-transform: rotate(-1.2deg);
+      }
+
+      h1 {
+        margin-bottom: 73px;
+      }
+
+      img{
+        margin-bottom: 67px;
+      }
+
+      &-layout{
+        padding: 0;
+      }
+
+    }
+
+    &__footer {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 182px;
+      padding-top: 52px;
+
+      &-layout{
+        position: relative;
+        padding: 0;
+      }
+
+      &:before{
+        bottom: -50px;
+        transform: rotate(-.8deg);
+        -webkit-transform: rotate(-.8deg);
       }
 
     }
@@ -78,4 +277,3 @@
   }
 
 }
-

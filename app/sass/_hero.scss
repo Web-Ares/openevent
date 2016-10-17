@@ -3,9 +3,20 @@
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  height: 799px;
-  margin-bottom: 20px;
+  height: 811px;
   text-align: center;
+
+  &:after{
+    position: absolute;
+    bottom: -13px;
+    left: -3px;
+    width: 102%;
+    height: 35px;
+    background-color: #7a43c6;
+    transform: rotate(-2.2deg);
+    -webkit-transform: rotate(-2.2deg);
+    content: '';
+  }
 
   &_small{
     height: 563px;
@@ -18,6 +29,7 @@
     width: 100%;
     height: inherit;
     overflow: hidden;
+    z-index: 1;
 
     &-table, &-desktop{
       display: none;
@@ -27,7 +39,7 @@
 
   &__layout{
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     top: 0;
     bottom: 0;
     left: 50%;
@@ -105,8 +117,13 @@
 
   .hero {
     height: auto;
+    margin-bottom: 20px;
     font-size: 24px;
     line-height: 30px;
+
+    &:after{
+      display: none;
+    }
 
     &_small .hero__layout{
       padding-top: 82px;

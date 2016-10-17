@@ -1,0 +1,20 @@
+.row-list li{
+  margin-bottom: 49px;
+}
+
+@media (min-width: $desktop) {
+
+  .row-list {
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-between;
+    align-items: stretch;
+
+    li{
+      width: 33%;
+      padding: 0 15px;
+    }
+
+  }
+
+}

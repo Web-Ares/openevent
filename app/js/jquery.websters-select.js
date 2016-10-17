@@ -4,7 +4,7 @@
         $( 'select' ).each( function(){
             new WebstersSelect( {
                 obj: $( this ),
-                optionType: 1,
+                optionType: $( this).data( 'option' ),
                 showType: 2
             } );
         } );
@@ -20,6 +20,7 @@
             _visible = params.visible || 5,
             _device = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent ),
             _text = $( '<span class="websters-select__item"></span>' ),
+            _subtext = $( '<span class="websters-select__subitem"></span>' ),
             _wrap = $( '<div class="websters-select"></div>' ),
             _window = $( window ),
             _body = $( 'body' ),
@@ -83,7 +84,7 @@
                     _text.text( $( this ).find( 'option:selected' ).text() );
                 } );
 
-                if( _optionType == 1 && !_device ){
+                if( _optionType >= 0 && !_device ){
                     _wrap.on( {
                         'click': function( e ){
                             e.stopPropagation();
@@ -112,10 +113,16 @@
                     _setMobileView();
                 } else if( _optionType == 1 ){
                     _setCustom1();
+                } else if( _optionType == 2 ){
+                    _setCustom2();
                 }
             },
             _setCustom1 = function(){
                 _wrap.addClass( 'websters-select_custom' );
+            },
+            _setCustom2 = function(){
+                _wrap.addClass( 'websters-select_data' );
+
             },
             _setMobileView = function(){
                 _wrap.addClass( 'websters-select_mobile' );

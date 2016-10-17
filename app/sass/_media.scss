@@ -1,0 +1,235 @@
+.media {
+  position: relative;
+  padding: 36px 0 54px;
+
+  &:before{
+    position: absolute;
+    top: -18px;
+    left: -100px;
+    bottom: -18px;
+    right: -100px;
+    background-color: #7a43c6;
+    transform: rotate(-2.6deg);
+    -webkit-transform: rotate(-2.6deg);
+    content: '';
+    z-index: 1;
+  }
+
+  &__layout{
+    position: relative;
+    padding: 0 13px;
+    z-index: 2;
+  }
+
+  &__title{
+    margin-bottom: 32px;
+    @include proximanova-bold;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    &-icon{
+      display: block;
+      position: relative;
+      margin-bottom: 14px;
+      padding-right: 17px;
+      font-size: 43px;
+
+
+      &:before, &:after{
+        position: absolute;
+        top: 23px;
+        width: 60px;
+        height: 2px;
+        background-color: rgba(236,236,236,.5);
+        content: '';
+      }
+
+      &:before{
+        left: 50%;
+        margin-left: 35px;
+      }
+
+      &:after{
+        right: 50%;
+        margin-right: 47px;
+      }
+
+    }
+
+  }
+
+  &__topic{
+    margin-bottom: 19px;
+    padding-top: 11px;
+    border-top: 1px solid #966cd5;
+    color: #fff;
+    @include proximanova-reg;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  &__slider{
+    position: relative;
+    margin-bottom: 31px
+  }
+
+  &__item{
+
+    img{
+      display: block;
+      width: 100%;
+    }
+
+  }
+
+  &__button-next,
+  &__button-prev{
+    position: absolute;
+    bottom: -20px;
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    background: url(../img/bg-arrow.png) no-repeat center #000;
+    text-indent: 999px;
+    z-index: 3;
+    overflow: hidden;
+  }
+
+  &__button-next{
+    right: 0;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+  }
+
+  &__button-prev{
+    right: 45px;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .media {
+    padding-bottom: 45px;
+
+    &:before{
+      transform: rotate(-1.1deg);
+      -webkit-transform: rotate(-1.1deg);
+    }
+
+    &__layout{
+      padding: 0 40px;
+    }
+
+    &__title{
+      margin-bottom: 45px;
+    }
+
+    &__topic {
+      margin-bottom: 30px;
+    }
+
+    &__slider {
+      margin-bottom: 49px;
+    }
+
+    &__button-next,
+    &__button-prev{
+      right: 26px;
+      bottom: -11px;
+    }
+
+    &__button-prev {
+      right: 69px;
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .media {
+
+    &__title{
+      margin-bottom: 50px;
+      font-size: 36px;
+
+      &-icon{
+        margin-bottom: 19px;
+      }
+
+    }
+
+    &__layout{
+      width: 1190px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    &__item{
+      position: relative;
+
+      &:before{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,.6);
+        opacity: 0;
+        transition: opacity .3s ease;
+        -webkit-transition: opacity .3s ease;
+        content: '';
+      }
+
+      &:after{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 60px;
+        height: 50px;
+        background-color: #7a43c6;
+        color: #fff;
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transition: opacity .3s ease;
+        -webkit-transition: opacity .3s ease;
+        content: '+';
+      }
+
+      &:hover:before,
+      &:hover:after{
+        opacity: 1;
+      }
+
+    }
+
+    &__button-next,
+    &__button-prev{
+      cursor: pointer;
+      transition: background-color .3s ease, box-shadow .3s ease;
+      -webkit-transition: background-color .3s ease, box-shadow .3s ease;
+
+      &:hover{
+        background-color: #593691;
+        box-shadow: 0 5px 20px rgba(0,0,0,.2);
+      }
+
+    }
+
+    &:before{
+      transform: rotate(-1.2deg);
+      -webkit-transform: rotate(-1.2deg);
+    }
+
+  }
+
+}

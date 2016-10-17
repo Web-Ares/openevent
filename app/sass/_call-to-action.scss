@@ -1,0 +1,119 @@
+.call-to-action {
+  position: relative;
+  z-index: 3;
+
+  &__bg{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: inherit;
+    overflow: hidden;
+
+    img{
+      width: 100%;
+    }
+
+    &-tablet, &-desktop{
+      display: none;
+    }
+
+  }
+
+  &__layout{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+    padding-bottom: 16px;
+    color: #fff;
+  }
+
+  &__title{
+    margin-bottom: 36px;
+    @include proximanova-bold;
+    font-size: 30px;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    &-icon{
+      display: block;
+      position: relative;
+      margin-bottom: 8px;
+      font-size: 48px;
+
+
+      &:before, &:after{
+        position: absolute;
+        top: 23px;
+        width: 60px;
+        height: 2px;
+        background-color: rgba(236,236,236,.5);
+        content: '';
+      }
+
+      &:before{
+        left: 50%;
+        margin-left: 35px;
+      }
+
+      &:after{
+        right: 50%;
+        margin-right: 47px;
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .call-to-action {
+
+    &__bg{
+
+      &-tablet {
+        display: block;
+      }
+
+      &-mobile{
+        display: none;
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .call-to-action {
+
+    &__bg{
+
+      &-tablet {
+        display: none;
+      }
+
+      &-desktop{
+        display: block;
+      }
+
+    }
+
+    &__title{
+      font-size: 54px;
+    }
+
+  }
+
+}

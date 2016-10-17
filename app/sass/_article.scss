@@ -1,0 +1,102 @@
+.article {
+  line-height: 26px;
+  text-align: left;
+
+  p{
+    margin-bottom: 26px;
+    color: #777;
+  }
+
+  h2{
+    margin-bottom: 39px;
+    font-size: 24px;
+  }
+
+  img{
+    margin-bottom: 30px;
+  }
+
+  &__quote{
+    padding-top: 9px;
+    font-size: 17px;
+
+    p{
+      color: #000;
+    }
+
+    &-author{
+      display: inline-block;
+      position: relative;
+      margin: 32px 0 7px;
+      @include proximanova-bold;
+      font-size: 16px;
+
+      &:before{
+        position: absolute;
+        top: -32px;
+        right: -6px;
+        width: 33px;
+        height: 26px;
+        background-image: url(../img/icon-quite.png);
+        content: '';
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .article {
+
+    h2{
+      margin-bottom: 29px;
+    }
+
+    &__quote{
+      margin-bottom: 51px;
+      padding-top: 6px;
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .article {
+    max-width: 681px;
+    margin: 0 auto;
+
+    h2{
+      margin-bottom: 40px;
+      font-size: 37px;
+    }
+
+    &__quote{
+      position: relative;
+      margin-top: 55px;
+      padding-right: 75px;
+
+      &-author{
+        position: absolute;
+        top: 50%;
+        right: 100%;
+        margin: 13px 35px 0 0;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        white-space: nowrap;
+      }
+
+    }
+
+    &__frame{
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+  }
+
+}

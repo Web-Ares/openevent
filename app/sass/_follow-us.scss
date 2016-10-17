@@ -1,0 +1,154 @@
+.follow-us {
+  position: relative;
+  padding: 47px 0 56px;
+
+  &:before{
+    position: absolute;
+    top: -18px;
+    left: -100px;
+    bottom: -18px;
+    right: -100px;
+    background-color: #fff;
+    transform: rotate(-2.6deg);
+    -webkit-transform: rotate(-2.6deg);
+    content: '';
+    z-index: 1;
+  }
+
+  &__layout{
+    position: relative;
+    padding: 0 36px;
+    z-index: 2;
+  }
+
+  &__title{
+    margin-bottom: 28px;
+    @include proximanova-bold;
+    font-size: 30px;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    &-icon{
+      display: block;
+      position: relative;
+      margin-bottom: 23px;
+      padding-right: 8px;
+      font-size: 43px;
+
+
+      &:before, &:after{
+        position: absolute;
+        top: 23px;
+        width: 60px;
+        height: 2px;
+        background-color: rgba(236,236,236,.5);
+        content: '';
+      }
+
+      &:before{
+        left: 50%;
+        margin-left: 35px;
+      }
+
+      &:after{
+        right: 50%;
+        margin-right: 47px;
+      }
+
+    }
+
+  }
+
+  &__wrap{
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+
+  &__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 74px;
+    height: 74px;
+    margin-bottom: 9px;
+    border: 1px solid #efefef;
+    background-color: #fff;
+    color: #435a65;
+    font-size: 35px;
+    text-align: center;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .follow-us {
+    padding: 63px 0 111px;
+
+    &:before{
+      transform: rotate(-1.1deg);
+      -webkit-transform: rotate(-1.1deg);
+    }
+
+    &__title {
+      margin-bottom: 37px;
+    }
+
+    &__wrap{
+      justify-content: center;
+    }
+
+    &__item{
+      margin: 0 6px;
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .follow-us {
+    padding: 74px 0 119px;
+
+    &:before{
+      transform: rotate(-1.2deg);
+      -webkit-transform: rotate(-1.2deg);
+    }
+
+    &__layout {
+      max-width: 1190px;
+      margin: 0 auto;
+      padding: 0 25px;
+    }
+
+    &__title{
+      margin-bottom: 50px;
+      font-size: 36px;
+
+      &-icon{
+        margin-bottom: 19px;
+      }
+
+    }
+
+    &__item{
+      width: 104px;
+      height: 104px;
+      font-size: 48px;
+      transition: background-color .3s ease, color .3s ease;
+      -webkit-transition: background-color .3s ease, color .3s ease;
+
+      &:hover{
+        background-color: #7a43c6;
+        color: #fff;
+      }
+
+    }
+
+  }
+
+}

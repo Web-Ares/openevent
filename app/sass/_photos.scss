@@ -1,0 +1,50 @@
+.photos {
+  width: 294px;
+  margin: 0 auto 50px;
+
+  &__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 294px;
+    height: 303px;
+    margin-bottom: 16px;
+    background: url(../img/icon-instagram.png) no-repeat center #ededed;
+    overflow: hidden;
+
+    > * {
+      display: block;
+      min-width: 100%;
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .photos {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 691px;
+    margin-bottom: 0;
+
+    &__item{
+      width: 331px;
+      height: 341px;
+      margin-bottom: 30px;
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .photos {
+    width: 1041px;
+  }
+
+}

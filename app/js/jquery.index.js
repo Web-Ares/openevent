@@ -16,33 +16,13 @@ $(function(){
             new FormValidation ( $( this ) )
         } );
 
-        $.each( $('.main-slider' ), function() {
-            new SliderMain ( $( this ) );
-        } );
-
-        $.each( $('.news' ), function() {
-            new News ( $( this ) );
-        } );
-
-        $.each( $('.speakers_load' ), function() {
-            new Speakers ( $( this ) );
-        } );
-
-        $.each( $( '.media-gallery' ), function(){
+        $.each( $( '.media' ), function(){
             new MediaGallery ( $( this ) )
         } );
 
-        $.each( $( '.schedule__items' ), function(){
-            new ScheduleOpen ( $( this ) )
-        } );
-
-        $.each( $( '.more-content' ), function() {
-            new AddMoreContent ( $( this ) );
-        } );
-
-        $.each( $( '.social-feed' ), function() {
-            new AddMoreSocial ( $( this ) );
-        } );
+        $.each($('.news-list'), function () {
+            new News($(this));
+        });
 
     });
 
@@ -366,770 +346,90 @@ $(function(){
 
     };
 
-    var SliderMain = function( obj ) {
-
-        //private properties
-        var _self = this,
-            _sliderSwiper,
-            _slider = obj,
-            _items = _slider.find( '.swiper-slide'),
-            _window = $( window );
-
-        //private methods
-        var _addEvents = function() {
-
-                _window.on( {
-
-                    'load': function() {
-
-                        _setHeight();
-
-                    },
-                    'resize': function() {
-
-                        _setHeight();
-
-                    }
-
-                } );
-
-            },
-            _initSlider = function() {
-
-                _sliderSwiper = new Swiper( _slider, {
-
-                    paginationClickable: true,
-                    nextButton: '.swiper-button-next',
-                    prevButton: '.swiper-button-prev',
-                    spaceBetween: 30
-
-                });
-
-            },
-            _setHeight = function() {
-
-                $.each( _items, function() {
-
-                    _items.height( _slider.height() )
-
-                } );
-
-            },
-            _init = function() {
-
-                _initSlider();
-                _addEvents();
-                _slider[ 0 ].obj = _self;
-
-            };
-
-        _init();
-    };
-
     var MediaGallery = function ( obj ) {
 
-        var _self = this,
-            _obj = obj,
-            _wrapper = _obj.find( '.media-gallery__wrap' ),
-            _cover = _obj.find( '.media-gallery__cover' ),
-            _galleryItemClass = null,
-            _window = $( window ),
-            _btnMore = _obj.find( '.media-gallery__more' ),
-            _btnAction = _btnMore.data( 'action' ),
-            _isGallery = false,
-            _request = new XMLHttpRequest();
+        var _obj = obj,
+            _mediaSlider1 = _obj.find( '.media__slider_1' ),
+            _mediaSlider1NextSlider = _obj.find( '.media__slider_1-button-next'),
+            _mediaSlider1PrevSlider = _obj.find( '.media__slider_1-button-prev'),
+            _mediaSlider2 = _obj.find( '.media__slider_2' ),
+            _mediaSlider2NextSlider = _obj.find( '.media__slider_2-button-next'),
+            _mediaSlider2PrevSlider = _obj.find( '.media__slider_2-button-prev'),
+            _media1,
+            _media2;
 
-        var _addGalleryContent = function( msg ){
+        var _initEvent = function() {
 
-                var hasItems = msg.has_items,
-                    path = null,
-                    newBlock = null;
+                _obj.on( 'click', '.media__item', function(){
 
-                $.each( msg.items, function( i ){
-
-                    if ( this.video == undefined ){
-                        path = this.href;
-                    } else {
-                        path = this.video;
-                    }
-
-                    newBlock = $( '<a href="' + path + '" title="' + this.title + '" class="media-gallery__item hidden" style="background-image: url(' + this.dummy + ');"><span class="media-gallery__item-title">' + this.title + '</span></a>' );
-
-                    if ( i == 0 || i == 4 ){
-                        newBlock.addClass( 'media-gallery__item_height2x' );
-                    }
-
-                    if ( i == 2 || i == 4 || i == 7 ){
-                        newBlock.addClass( 'media-gallery__item_width2x' );
-                    }
-
-                    if ( this.video ){
-                        newBlock.addClass( 'media-gallery__item_video' );
-                    }
-
-                    _wrapper.append( newBlock );
-
-                } );
-
-                var newItems = _wrapper.find( '.hidden' );
-
-                setTimeout( function(){
-                    _heightAnimation( hasItems, newItems );
-                }, 50 );
-
-            },
-            _addEvents = function () {
-
-                _window.on({
-
-                    resize: function(){
-
-                        if( _window.width() + _getScrollWidth() >= 1000 ) {
-
-                            if ( !_isGallery ){
-                                _initGallery();
-                            }
-
-                        } else {
-
-                            if ( _isGallery ){
-                                _destroyGallery();
-                            }
-
-                        }
-
-                    }
-
-                });
-
-                _btnMore.on({
-
-                    click: function(){
-                        _loadNewItems();
-                        return false;
-                    }
-
-                });
-
-                _obj.on( 'click', '.media-gallery__item', function(){
-
-                    SwiperPopup( $( this ), $( this ).index() );
+                    SwiperPopup( $( this ).parents( '.media__slider' ), $( this ).index() );
 
                     return false;
 
                 } );
 
             },
-            _destroyGallery = function(){
+            _initSlider = function() {
 
-                _wrapper.isotope( 'destroy' );
-                _isGallery = false;
-
-            },
-            _getScrollWidth = function(){
-                var div = document.createElement( 'div' ),
-                    scrollWidth = null;
-
-                div.style.overflowY = 'scroll';
-                div.style.width = '50px';
-                div.style.height = '50px';
-                div.style.visibility = 'hidden';
-
-                document.body.appendChild( div );
-
-                scrollWidth = div.offsetWidth - div.clientWidth;
-
-                document.body.removeChild( div );
-                return scrollWidth ;
-            },
-            _heightAnimation = function( hasItems, newItems ){
-
-                _cover.animate( {
-                    height: _wrapper.height()
-                }, {
-                    duration: 500,
-                    complete: function(){
-
-                        _cover.css( 'height', '' );
-
-                        newItems.each( function( i ){
-                            _showNewItems( $( this ),i );
-                        } );
-
-                        if ( hasItems == 0 ){
-                            _removeBtnMore();
+                _media1 = new Swiper ( _mediaSlider1, {
+                    autoplay: 5000,
+                    speed: 500,
+                    effect: 'slide',
+                    loop: true,
+                    autoplayDisableOnInteraction: false,
+                    nextButton: _mediaSlider1NextSlider,
+                    prevButton: _mediaSlider1PrevSlider,
+                    slidesPerView: 3,
+                    spaceBetween: 26,
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 1,
+                            spaceBetween: 47
+                        },
+                        1190: {
+                            slidesPerView: 2,
+                            spaceBetween: 47
                         }
-
                     }
-                } )
+                } );
 
-            },
-            _initGallery = function() {
-
-                _wrapper = _obj.find( '.media-gallery__wrap' );
-                _galleryItemClass = '.media-gallery__item';
-
-                _wrapper.isotope({
-                    itemSelector: _galleryItemClass,
-                    masonry: {
-                        columnWidth: 0
+                _media2 = new Swiper ( _mediaSlider2, {
+                    autoplay: 5000,
+                    speed: 500,
+                    effect: 'slide',
+                    loop: true,
+                    autoplayDisableOnInteraction: false,
+                    nextButton: _mediaSlider2NextSlider,
+                    prevButton: _mediaSlider2PrevSlider,
+                    slidesPerView: 3,
+                    spaceBetween: 26,
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 1,
+                            spaceBetween: 47
+                        },
+                        1190: {
+                            slidesPerView: 2,
+                            spaceBetween: 47
+                        }
                     }
-                });
-
-                _isGallery = true;
+                } );
 
             },
             _init = function () {
-
-                if( _window.width() + _getScrollWidth() >= 1000 ) {
-                    _initGallery();
-                }
-
-                _addEvents();
-                _obj[0].obj = _self;
-            },
-            _loadNewItems = function(){
-
-                var galleryItem = _wrapper.find( '.media-gallery__item' );
-                _request.abort();
-                _request = $.ajax({
-                    url: _btnAction,
-                    data: {
-                        loadedCount: galleryItem.length
-                    },
-                    dataType: 'json',
-                    timeout: 20000,
-                    type: "GET",
-                    success: function ( msg ) {
-
-                        if( _window.width() + _getScrollWidth() < 1000 ) {
-                            _addGalleryContent( msg );
-                        } else {
-                            _cover.height( _cover.height() );
-                            _destroyGallery();
-                            _addGalleryContent( msg );
-                            setTimeout( function(){
-                                _initGallery();
-                            }, 10 );
-                        }
-
-                    },
-                    error: function ( XMLHttpRequest ) {
-                        if( XMLHttpRequest.statusText != 'abort' ) {
-                            alert( 'Error!' );
-                        }
-                    }
-                });
-
-            },
-            _removeBtnMore = function(){
-
-                _btnMore.css( 'opacity', 0 );
-
-                setTimeout( function(){
-
-                    _btnMore.css( 'padding', 0 );
-
-                    _btnMore.animate({
-                        height: 0
-                    }, {
-                        duration: 500,
-                        complete: function(){
-                            _btnMore.remove();
-                        }
-                    } );
-
-                }, 300 );
-
-            },
-            _showNewItems = function( item, index ){
-
-                setTimeout( function(){
-                    item.removeClass( 'hidden' );
-                }, index * 100 );
-
+                _initSlider();
+                _initEvent();
             };
 
         _init();
 
-    };
-
-    var ScheduleOpen = function( obj ) {
-
-        //private properties
-        var _self = this,
-            _obj = obj,
-            _items = _obj.find( '.schedule__item-drop-down' ),
-            _close = _obj.find( '.schedule__close' ),
-            _btnOpen = _items.find( '.schedule__event' );
-
-        //private methods
-        var _addEvents = function() {
-
-                _close.on( {
-                    'click': function() {
-
-                        _closeScheduleDetails( $( this ) );
-
-                        return false;
-
-                    }
-                } );
-
-                _btnOpen.on( {
-                    'click': function() {
-
-                        if ( _obj.hasClass( 'schedule__items_profile' ) ) {
-
-                            _openProfileDetails( $( this ) );
-
-                        } else {
-
-                            _openScheduleDetails( $( this ) );
-
-                        }
-                    }
-                } );
-
-            },
-            _openScheduleDetails = function( elem )  {
-
-                var curItem = elem,
-                    curItemParent = curItem.parent( _items ),
-                    details = curItem.next();
-
-                if ( _obj.hasClass( 'schedule__items_profile' ) ) {
-                    details = curItem.parent().next();
-                }
-
-                if( curItemParent.hasClass( 'opened' ) ) {
-
-                    curItemParent.removeClass( 'opened' );
-                    details.slideUp( 300 );
-
-                } else {
-
-                    _items.removeClass( 'opened' );
-                    _btnOpen.next().slideUp( 300 );
-
-                    curItemParent.addClass( 'opened' );
-                    details.slideDown( 300 );
-
-                }
-
-            },
-            _openProfileDetails = function( elem )  {
-
-                var curItem = elem,
-                    curItemParent = curItem.parent().parent( _items),
-                    details = curItem.parent().next();
-
-                if( curItemParent.hasClass( 'opened' ) ) {
-
-                    curItemParent.removeClass( 'opened' );
-                    details.slideUp( 300 );
-
-                } else {
-                    _items.removeClass( 'opened' );
-                    _btnOpen.parent().next().slideUp( 300 );
-
-                    curItemParent.addClass( 'opened' );
-                    details.slideDown( 300 );
-
-                }
-
-            },
-            _closeScheduleDetails = function( elem )  {
-
-                var curItem = elem,
-                    curItemParent = curItem.parents( _items ),
-                    details = curItem.parent();
-
-                curItemParent.removeClass( 'opened' );
-                details.slideUp( 300 );
-
-            },
-            _init = function() {
-
-                _btnOpen.off();
-
-                _close.off();
-
-                _addEvents();
-                _obj[ 0 ].obj = _self;
-
-            };
-
-        _init();
-    };
-
-    var News = function( obj ) {
-
-        //private properties
-        var _self = this,
-            _obj = obj,
-            _btnMore = _obj.find( '.news__more' ),
-            _btnAction = _btnMore.data( 'action' ),
-            _wrapper = _obj.find( '.news__layout' ),
-            _request = new XMLHttpRequest();
-
-        //private methods
-        var _addEvents = function() {
-
-                _btnMore.on( {
-
-                    click: function() {
-                        _ajaxRequest();
-                        return false;
-                    }
-
-                } );
-
-            },
-            _addNewsContent = function( msg ) {
-
-                var hasItems = msg.has_items;
-
-                $.each( msg.items, function() {
-
-                    var newBlock = $( '<div class="news__item"><article class="news__article hidden">' +
-                        '<div class="news__picture" style="background-image:url( ' + this.picture +  ' )"></div>' +
-                        '<div class="news__content">' +
-                        '<time datetime="' + this.date + '" class="news__date">' + this.date + '</time>' +
-                        '<h2 class="news__title">' + this.title + '</h2>' +
-                        '<a href="' + this.href + '" class="btn btn_4">READ MORE</a>' +
-                        '</div></article></div>' );
-
-                    _wrapper.append( newBlock );
-
-                } );
-
-                var newItems = _wrapper.find( '.hidden' );
-
-                setTimeout( function() {
-                    _heightAnimation( hasItems, newItems );
-                }, 50 );
-
-            },
-            _heightAnimation = function( hasItems, newItems ){
-
-                newItems.each( function( i ){
-                    _showNewItems( $( this ), i );
-                } );
-
-                if ( hasItems == 0 ) {
-                    _removeBtnMore();
-                }
-
-            },
-            _showNewItems = function( item, index ) {
-
-                setTimeout( function() {
-                    item.removeClass( 'hidden' );
-                }, index * 100 );
-
-            },
-            _ajaxRequest = function() {
-
-                var newsItem = _obj.find( '.news__item' );
-
-                _request.abort();
-                _request = $.ajax({
-                    url: _btnAction,
-                    data: {
-                        loadedCount: newsItem.length
-                    },
-                    dataType: 'json',
-                    timeout: 20000,
-                    type: 'GET',
-                    success: function ( msg ) {
-
-                        _addNewsContent( msg );
-
-                    },
-                    error: function ( XMLHttpRequest ) {
-                        if( XMLHttpRequest.statusText != 'abort' ) {
-                            alert( 'Error!' );
-                        }
-                    }
-                });
-
-            },
-            _removeBtnMore = function() {
-
-                _btnMore.css( 'opacity', 0 );
-
-                setTimeout( function() {
-
-                    _btnMore.css( 'padding', 0 );
-
-                    _btnMore.animate( {
-                        height: 0
-                    }, {
-                        duration: 500,
-                        complete: function() {
-                            _btnMore.remove();
-                        }
-                    } );
-
-                }, 300 );
-
-            },
-            _init = function() {
-
-                _addEvents();
-                _obj[ 0 ].obj = _self;
-
-            };
-
-        _init();
-    };
-
-    var AddMoreContent = function( obj ) {
-
-        //private properties
-        var _self = this,
-            _obj = obj,
-            _btnMore = _obj.find( $( '.more-content__btn' ) ),
-            _btnAction = _btnMore.data( 'action'),
-            _wrapper = _obj.find( $( '.more-content__wrapper' ) ),
-            _request = new XMLHttpRequest();
-
-        //private methods
-        var _addEvents = function() {
-
-                _btnMore.on( {
-
-                    click: function() {
-
-                        _addNewBlocks();
-
-                        return false;
-                    }
-
-                } );
-
-            },
-            _addNewContent = function( msg ) {
-
-                var contentMsg = msg.html;
-
-                _wrapper.append( contentMsg );
-
-                var newItems = _wrapper.find( '.hidden' );
-
-                setTimeout( function() {
-
-                    $.each( $( '.schedule__items' ), function(){
-
-                        new ScheduleOpen ( $( this ) );
-
-                    } );
-
-                }, 10  );
-
-                setTimeout( function() {
-
-                    _heightAnimation( newItems );
-
-                }, 50 );
-
-                if ( !msg.has_items ) {
-
-                    _removeBtnMore();
-
-                }
-
-            },
-            _heightAnimation = function( newItems ){
-
-                newItems.each( function( i ) {
-
-                    _showNewItems( $( this ), i );
-
-                } );
-
-            },
-            _showNewItems = function( item, index ){
-
-                setTimeout( function() {
-
-                    item.removeClass( 'hidden' );
-
-                }, index * 300 );
-
-            },
-            _removeBtnMore = function() {
-
-                _btnMore.addClass( 'hidden' );
-
-            },
-            _addNewBlocks = function() {
-
-                var items = _obj.find( '.more-content__item' );
-
-                _request.abort();
-
-                _request = $.ajax( {
-                    url: _btnAction,
-                    data: {
-                        loadedCount: items.length
-                    },
-                    dataType: 'json',
-                    timeout: 20000,
-                    type: "GET",
-                    success: function ( msg ) {
-
-                        _addNewContent( msg )
-
-                    },
-                    error: function ( XMLHttpRequest ) {
-
-                        if( XMLHttpRequest.statusText != "abort" ) {
-
-                            alert( "Error!" );
-
-                        }
-                    }
-                } );
-
-            },
-            _init = function() {
-
-                _addEvents();
-                _obj[ 0 ].obj = _self;
-
-            };
-
-        _init();
-    };
-
-    var Speakers = function( obj ) {
-
-        //private properties
-        var _self = this,
-            _obj = obj,
-            _btnMore = _obj.find( '.speakers__more' ),
-            _btnAction = _btnMore.data( 'action' ),
-            _wrapper = _obj.find( '.speakers__layout' ),
-            _request = new XMLHttpRequest();
-
-        //private methods
-        var _addEvents = function() {
-
-                _btnMore.on( {
-
-                    click: function() {
-                        _ajaxRequest();
-                        return false;
-                    }
-
-                } );
-
-            },
-            _addNewsContent = function( msg ){
-
-                var hasItems = msg.has_items;
-
-                $.each( msg.items, function() {
-
-                    var newBlock = $( '<div class="speakers__item"><a href="' + this.href + '" class="speakers__person hidden ' + this.favorite + ' ">' +
-                        '<div class="speakers__photo" style="background-image:url( ' + this.picture +  ' )"></div>' +
-                        '<h3 class="speakers__name">' + this.name + '</h3>' +
-                        '<span class="speakers__post">' + this.post + '" </span>' +
-                        '</a></div>' );
-
-                    _wrapper.append( newBlock );
-
-                } );
-
-                var newItems = _wrapper.find( '.hidden' );
-
-                setTimeout( function() {
-                    _heightAnimation( hasItems, newItems );
-                }, 50 );
-
-            },
-            _heightAnimation = function( hasItems, newItems ){
-
-                newItems.each( function( i ){
-                    _showNewItems( $( this ),i );
-                } );
-
-                if ( hasItems == 0 ){
-                    _removeBtnMore();
-                }
-
-            },
-            _showNewItems = function( item, index ){
-
-                setTimeout( function() {
-                    item.removeClass( 'hidden' );
-                }, index * 100 );
-
-            },
-            _ajaxRequest = function() {
-
-                var newsItem = _obj.find( '.speakers__person' );
-                _request.abort();
-                _request = $.ajax( {
-                    url: _btnAction,
-                    data: {
-                        loadedCount: newsItem.length
-                    },
-                    dataType: 'json',
-                    timeout: 20000,
-                    type: 'GET',
-                    success: function ( msg ) {
-
-                        _addNewsContent( msg );
-
-                    },
-                    error: function ( XMLHttpRequest ) {
-                        if( XMLHttpRequest.statusText != 'abort' ) {
-                            alert( 'Error!' );
-                        }
-                    }
-                });
-
-            },
-            _removeBtnMore = function() {
-
-                _btnMore.css( 'opacity', 0 );
-
-                setTimeout( function() {
-
-                    _btnMore.css( 'padding', 0 );
-
-                    _btnMore.animate( {
-                        height: 0
-                    }, {
-                        duration: 500,
-                        complete: function() {
-                            _btnMore.remove();
-                        }
-                    } );
-
-                }, 300 );
-
-            },
-            _init = function() {
-
-                _addEvents();
-                _obj[ 0 ].obj = _self;
-
-            };
-
-        _init();
     };
 
     var SwiperPopup = function ( obj, index ) {
 
-        var _self = this,
-            _obj = obj,
+        var _obj = obj,
             _body = $( 'body' ),
-            _wrapper = _obj.parent(),
-            _links = _wrapper.find( '.media-gallery__item' ),
+            _links = _obj.find( '.media__item' ),
             _html = $( 'html' ),
             _window = $( window ),
             _popup = null,
@@ -1237,6 +537,8 @@ $(function(){
                         dataSRC = null,
                         preloader = null;
 
+                    console.log('ddd');
+
                     if ( $( this ).hasClass( 'media-gallery__item_video' ) ){
 
                         preloader = '<i class="fa fa-spinner fa-spin"></i>';
@@ -1266,7 +568,7 @@ $(function(){
                         load: function(){
                             $( this ).attr( 'data-width', this.width );
                             $( this ).attr( 'data-height', this.height );
-                            _setPictureSize( this.width, this.height, $( this ) );
+                            /*_setPictureSize( this.width, this.height, $( this ) );*/
                         }
                     });
 
@@ -1306,7 +608,6 @@ $(function(){
             _init = function () {
                 _buildPopup();
                 _addEvents();
-                _obj[ 0 ].obj = _self;
             },
             _removeVideo = function(){
 
@@ -1364,22 +665,21 @@ $(function(){
 
     };
 
-    var AddMoreSocial = function( obj ) {
+    var News = function (obj) {
 
         //private properties
         var _self = this,
             _obj = obj,
-            _btnMore = _obj.find( '.social-feed__more' ),
+            _btnMore = _obj.find( '.news-list__more' ),
             _btnAction = _btnMore.data( 'action' ),
-            _wrapper = _obj.find( '.social-feed__wrap' ),
+            _wrapper = _obj.find( '.news-list__wrap '),
             _request = new XMLHttpRequest();
 
         //private methods
-        var _addEvents = function() {
+        var _addEvents = function () {
 
                 _btnMore.on({
-
-                    click: function() {
+                    click: function () {
                         _ajaxRequest();
                         return false;
                     }
@@ -1387,105 +687,97 @@ $(function(){
                 });
 
             },
-            _addSocialContent = function( msg ) {
+            _addNewsContent = function (msg) {
 
                 var hasItems = msg.has_items;
 
-                $.each( msg.items, function() {
+                $.each(msg.items, function () {
 
-                    var newBlock = $( '<div class="social-feed__item hidden">'+
-                        '<div class="social-feed__inner">' +
-                        '<div class="social-feed__head">'+
-                        '<div class="social-feed__logo">'+
-                        '<i class="fa fa-twitter"></i>'+
-                        '</div>'+
-                        '<div class="social-feed__name">'+this.name+'</div>'+ this.login +
-                        '</div>'+
-                        '<div class="social-feed__txt">'+this.feed_txt+'</div>'+
-                        '<div class="social-feed__hover">'+
-                        '<a href="'+this.href+'" class="btn btn_11">VIEW ON TWITTER <i class="fa fa-long-arrow-right"></i></a>'+
-                        '</div>' +
-                        '</div>'+
-                        '</div>' );
+                    var newBlock = $('<article class="news-list__item hidden" data-id="' + this.id + '">' +
+                        '<a href="'+this.href+'" class="news-list__article">' +
+                        '<img src="'+ this.picture + '" alt="'+ this.title +'"/>' +
+                        '<h2 class="news-list__topic">' + this.title + '</h2></a></article>');
 
-                    _wrapper.append( newBlock );
+                    _wrapper.append(newBlock);
 
-                } );
+                });
 
-                var newItems = _wrapper.find( '.hidden' );
+                var newItems = _wrapper.find('.hidden');
 
-                setTimeout( function() {
-                    _heightAnimation( hasItems, newItems );
-                }, 50 );
+                setTimeout(function () {
+                    _heightAnimation(hasItems, newItems);
+                }, 50);
 
             },
-            _heightAnimation = function( hasItems, newItems ) {
+            _heightAnimation = function (hasItems, newItems) {
 
-                newItems.each( function( i ) {
-                    _showNewItems( $( this ), i );
-                } );
+                newItems.each(function (i) {
+                    _showNewItems($(this), i);
+                });
 
-                if ( hasItems == 0 ) {
+                if (hasItems == 0) {
                     _removeBtnMore();
                 }
 
             },
-            _showNewItems = function( item, index ){
+            _showNewItems = function (item, index) {
 
-                setTimeout( function() {
-                    item.removeClass( 'hidden' );
-                }, index * 100 );
+                setTimeout(function () {
+                    item.removeClass('hidden');
+                }, index * 30);
 
             },
-            _ajaxRequest = function(){
+            _ajaxRequest = function () {
 
-                var newsItem = _obj.find( '.social-feed__item' );
+                var items = _obj.find( '.news-list__item' );
+
                 _request.abort();
-                _request = $.ajax( {
+
+                _request = $.ajax({
                     url: _btnAction,
                     data: {
-                        loadedCount: newsItem.length
+                        loadedCount: items.length
                     },
                     dataType: 'json',
                     timeout: 20000,
                     type: 'GET',
-                    success: function ( msg ) {
+                    success: function (msg) {
 
-                        _addSocialContent( msg );
+                        _addNewsContent(msg);
 
                     },
-                    error: function ( XMLHttpRequest ) {
-                        if( XMLHttpRequest.statusText != 'abort' ) {
-                            alert( 'Error!' );
+                    error: function (XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != 'abort') {
+                            alert('Error!');
                         }
                     }
                 });
 
             },
-            _removeBtnMore = function() {
+            _removeBtnMore = function () {
 
-                _btnMore.css( 'opacity', 0 );
+                _btnMore.css('opacity', 0);
 
-                setTimeout( function(){
+                setTimeout(function () {
 
-                    _btnMore.css( 'padding', 0 );
+                    _btnMore.css('padding', 0);
 
                     _btnMore.animate({
                         height: 0
                     }, {
                         duration: 500,
-                        complete: function() {
+                        complete: function () {
                             _btnMore.remove();
                         }
-                    } );
+                    });
 
-                }, 300 );
+                }, 300);
 
             },
-            _init = function() {
+            _init = function () {
 
                 _addEvents();
-                _obj[ 0 ].obj = _self;
+                _obj[0].obj = _self;
 
             };
 

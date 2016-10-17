@@ -1,0 +1,238 @@
+.facebook-content {
+  position: relative;
+  padding: 19px 0 44px;
+
+  &:before{
+    position: absolute;
+    top: -18px;
+    left: -100px;
+    bottom: -18px;
+    right: -100px;
+    background-color: #51caaf;
+    transform: rotate(-2.6deg);
+    -webkit-transform: rotate(-2.6deg);
+    content: '';
+    z-index: 1;
+  }
+
+  &__layout{
+    position: relative;
+    z-index: 2;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  &__title{
+    margin-bottom: 36px;
+    @include proximanova-bold;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    &-icon{
+      display: block;
+      position: relative;
+      margin-bottom: 14px;
+      padding-right: 4px;
+      font-size: 40px;
+
+      &:before, &:after{
+        position: absolute;
+        top: 19px;
+        width: 60px;
+        height: 2px;
+        background-color: rgba(236,236,236,.5);
+        content: '';
+      }
+
+      &:before{
+        left: 50%;
+        margin-left: 35px;
+      }
+
+      &:after{
+        right: 50%;
+        margin-right: 47px;
+      }
+
+    }
+
+  }
+
+  &__number{
+    display: block;
+    color: #000;
+    font-size: 50px;
+    @include proximanova-bold
+  }
+
+  &__interested{
+    position: relative;
+    width: 260px;
+    margin: 0 auto 13px;
+    padding: 31px 0 24px;
+    background-color: #fff;
+    color: #d4d4d4;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  &__going{
+    width: 260px;
+    margin: 0 auto 13px;
+    padding: 32px 0 24px;
+    color: #d4d4d4;
+    font-size: 24px;
+    background-color: #fff;
+    text-align: center;
+  }
+
+  &__wrap{
+    width: 260px;
+    margin: 0 auto 13px;
+    padding: 23px 23px 24px;
+    color: #b5b5b5;
+    font-size: 16px;
+    background-color: #fff;
+    text-align: left;
+  }
+
+  &__plugin{
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e3e3e3;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  &__link{
+    display: block;
+    width: 100%;
+    color: #3a71b5;
+    font: 600 20px 'Roboto Slab', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover{
+      text-decoration: underline;
+    }
+
+  }
+
+  &__send{
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-bottom: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -24px;
+    left: -21px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 29px;
+    color: #fff;
+    background-color: #3a71b5;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .facebook-content {
+    padding: 37px 0 69px;
+
+    &:before{
+      transform: rotate(-1.1deg);
+      -webkit-transform: rotate(-1.1deg);
+    }
+
+    &__title{
+      width: 100%;
+    }
+
+    &__layout{
+      display: flex;
+      flex-flow: row wrap;
+      align-content: stretch;
+      justify-content: space-between;
+      width: 690px;
+      padding: 0;
+    }
+
+    &__wrap{
+      width: calc( 100% - 212px );
+      margin-left: 14px;
+    }
+
+    &__statistics{
+      display: flex;
+      display: -webkit-flex;
+      flex-flow: column;
+      justify-content: space-between;
+      -webkit-justify-content: space-between;
+    }
+
+    &__interested, &__going{
+      width: 198px;
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .facebook-content {
+    padding: 37px 0 58px;
+
+    &:before{
+      transform: rotate(-1.2deg);
+      -webkit-transform: rotate(-1.2deg);
+    }
+
+    &__layout{
+      width: 845px;
+      padding: 0;
+    }
+
+    &__title{
+      margin-bottom: 38px;
+      font-size: 36px;
+
+      &-icon{
+        margin-bottom: 19px;
+      }
+
+    }
+
+    &__plugin{
+      width: 520px;
+    }
+
+    &__icon{
+      transition: opacity .3s ease;
+      -webkit-transition: opacity .3s ease;
+
+      &:hover{
+        opacity: .8;
+      }
+
+    }
+
+  }
+
+}

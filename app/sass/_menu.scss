@@ -3,22 +3,34 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 64px 0;
   letter-spacing: .5px;
-  background-color: rgba(0,0,0,.9);
-  visibility: hidden;
-  opacity: 0;
   transition: visibility .3s ease, opacity .3s ease;
   -webkit-transition: visibility .3s ease, opacity .3s ease;
 
   &.opened{
     visibility: visible;
     opacity: 1;
+  }
+
+  &_header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 64px 0;
+    background-color: rgba(0,0,0,.9);
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &_footer{
+    margin-bottom: 65px;
+
+    .menu__layout{
+      margin-bottom: 7px;
+    }
+
   }
 
   &-btn{
@@ -31,6 +43,8 @@
     background-color: #58318d;
     color: #fff;
     font-size: 14px;
+    transition: top .3s ease;
+    -webkit-transition: top .3s ease;
   }
 
   &__item{
@@ -110,6 +124,15 @@
       right: 39px;
     }
 
+    &_footer{
+      margin-bottom: 44px;
+
+      .menu__layout{
+        margin-bottom: 3px;
+      }
+
+    }
+
   }
 
 }
@@ -129,6 +152,12 @@
     padding: 0;
     background-color: transparent;
     opacity: 1;
+
+    &_footer{
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
 
     &__layout{
       display: flex;
@@ -221,6 +250,14 @@
       display: none;
     }
 
+  }
+
+}
+
+@media (min-width: $pre-desktop) {
+
+  .menu_footer {
+    right: -5px;
   }
 
 }

@@ -1,0 +1,240 @@
+.sponsors {
+  position: relative;
+  padding: 34px 0 30px;
+
+  &:before{
+    position: absolute;
+    top: -18px;
+    left: -100px;
+    bottom: -18px;
+    right: -100px;
+    background-color: #fff;
+    transform: rotate(-2.6deg);
+    -webkit-transform: rotate(-2.6deg);
+    content: '';
+    z-index: 1;
+  }
+
+  &__layout{
+    position: relative;
+    padding: 0 13px;
+    z-index: 2;
+  }
+
+  &__title{
+    margin-bottom: 38px;
+    padding-right: 11px;
+    @include proximanova-bold;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+
+    &-icon{
+      display: block;
+      position: relative;
+      margin-bottom: 20px;
+      padding-right: 7px;
+      font-size: 42px;
+
+      &:before, &:after{
+        position: absolute;
+        top: 23px;
+        width: 60px;
+        height: 2px;
+        background-color: rgba(236,236,236,.5);
+        content: '';
+      }
+
+      &:before{
+        left: 50%;
+        margin-left: 35px;
+      }
+
+      &:after{
+        right: 50%;
+        margin-right: 47px;
+      }
+
+    }
+
+  }
+
+  &__topic{
+    margin-bottom: 23px;
+    padding-top: 11px;
+    border-top: 1px solid #e9e9e9;
+    @include proximanova-reg;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  &__wrap{
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-between;
+    align-items: stretch;
+
+    &_silver{
+      margin: 36px auto 18px;
+    }
+
+    &_bronze{
+      margin: 37px auto 18px;
+    }
+
+  }
+
+  &__item{
+    padding: 0 7px;
+
+    &_gold{
+      width: 100%;
+      margin-bottom: 43px;
+    }
+
+    &_silver{
+      width: 50%;
+      margin-bottom: 20px;
+    }
+
+    &_bronze{
+      width: 33%;
+      margin-bottom: 23px;
+    }
+
+  }
+
+  &__logo{
+    display: block;
+    width: 100%;
+
+    img{
+      display: block;
+      width: 100%;
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .sponsors {
+    padding: 54px 0 36px;
+
+    &:before{
+      transform: rotate(-1.1deg);
+      -webkit-transform: rotate(-1.1deg);
+    }
+
+    &__layout{
+      padding: 0 40px;
+    }
+
+    &__wrap{
+      padding: 0 14px;
+    }
+
+    &__item{
+
+      &_gold{
+        width: 45%;
+        margin-bottom: 32px;
+      }
+
+      &_silver{
+        width: 23%;
+        margin-bottom: 32px;
+      }
+
+      &_bronze{
+        width: 13%;
+        margin-bottom: 23px;
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .sponsors {
+    padding-bottom: 79px;
+
+    &:before{
+      transform: rotate(-1.2deg);
+      -webkit-transform: rotate(-1.2deg);
+    }
+
+    &__layout {
+      max-width: 1190px;
+      margin: 0 auto;
+    }
+
+    &__wrap {
+      margin-bottom: 48px;
+      padding: 0 32px;
+    }
+
+    &__title{
+      margin-bottom: 61px;
+      font-size: 36px;
+
+      &-icon{
+        margin-bottom: 12px;
+      }
+    }
+
+    &__topic{
+      margin-bottom: 74px;
+      padding-top: 32px;
+      font-size: 20px;
+    }
+
+    &__logo{
+      position: relative;
+
+      &:before{
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        bottom: -40px;
+        left: -40px;
+        box-shadow: 0 0 50px rgba(0,0,0,.1);
+        background-color: #fff;
+        z-index: -1;
+        opacity: 0;
+        transition: box-shadow .3s ease;
+        -webkit-transition: box-shadow .3s ease;
+        content: '';
+      }
+
+      &:after{
+        position: absolute;
+        right: -40px;
+        bottom: -40px;
+        width: 35px;
+        height: 30px;
+        line-height: 30px;
+        background-color: #7a43c6;
+        font-size: 13px;
+        text-align: center;
+        opacity: 0;
+        color: #fff;
+        transition: opacity .3s ease;
+        -webkit-transition: opacity .3s ease;
+        content: '+';
+      }
+
+      &:hover:before,
+      &:hover:after{
+        opacity: 1;
+      }
+
+    }
+
+  }
+
+}

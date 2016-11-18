@@ -16,8 +16,16 @@ $(function(){
             new FormValidation ( $( this ) )
         } );
 
+        $.each( $( '.schedule' ), function(){
+            new ScheduleGallery ( $( this ) )
+        } );
+
         $.each( $( '.media' ), function(){
             new MediaGallery ( $( this ) )
+        } );
+
+        $.each( $( '.hero_slider' ), function(){
+            new HeroGallery ( $( this ) )
         } );
 
         $.each($('.news-list'), function () {
@@ -411,6 +419,80 @@ $(function(){
                         1190: {
                             slidesPerView: 2,
                             spaceBetween: 47
+                        }
+                    }
+                } );
+
+            },
+            _init = function () {
+                _initSlider();
+                _initEvent();
+            };
+
+        _init();
+
+    };
+
+    var HeroGallery = function ( obj ) {
+
+        var _obj = obj,
+            _heroSlider = _obj.find( '.hero__slider' ),
+            _heroNextSlider = _obj.find( '.hero__button-next'),
+            _heroPrevSlider = _obj.find( '.hero__button-prev'),
+            _hero;
+
+        var _initEvent = function() {
+            },
+            _initSlider = function() {
+
+                _hero = new Swiper ( _heroSlider, {
+                    autoplay: false,
+                    speed: 500,
+                    effect: 'slide',
+                    loop: true,
+                    nextButton: _heroNextSlider,
+                    prevButton: _heroPrevSlider,
+                    slidesPerView: 1
+                } );
+
+            },
+            _init = function () {
+                _initSlider();
+                _initEvent();
+            };
+
+        _init();
+
+    };
+
+    var ScheduleGallery = function ( obj ) {
+
+        var _obj = obj,
+            _scheduleSlider = _obj.find( '.swiper-container' ),
+            _scheduleNextSlider = _obj.find( '.schedule__button-next'),
+            _schedulePrevSlider = _obj.find( '.schedule__button-prev'),
+            _view = _scheduleSlider.data('view'),
+            _group = _scheduleSlider.data('group'),
+            _schedule;
+
+        var _initEvent = function() {
+
+            },
+            _initSlider = function() {
+
+                _schedule = new Swiper ( _scheduleSlider, {
+                    autoplay: false,
+                    speed: 500,
+                    effect: 'slide',
+                    loop: false,
+                    autoplayDisableOnInteraction: false,
+                    nextButton: _scheduleNextSlider,
+                    prevButton: _schedulePrevSlider,
+                    slidesPerView: _view,
+                    slidesPerGroup: _group,
+                    breakpoints: {
+                        1200: {
+                            slidesPerView: 1
                         }
                     }
                 } );

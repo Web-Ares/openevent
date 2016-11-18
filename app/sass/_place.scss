@@ -1,11 +1,10 @@
 .where {
   position: relative;
-  padding-bottom: 42px;
   z-index: 1;
 
   &__map{
     position: relative;
-    height: 557px;
+    height: 910px;
     background-color: #fff;
     z-index: 2;
 
@@ -36,8 +35,10 @@
   }
 
   &__popup{
-    position: relative;
-    margin: -184px 16px 0 13px;
+    position: absolute;
+    right: 16px;
+    bottom: 42px;
+    left: 13px;
     padding: 54px 3px 25px 10px;
     background-color: rgba(255,255,255,.8);
     z-index: 2;
@@ -79,6 +80,10 @@
 
     }
 
+  }
+
+  &__layout{
+    overflow: hidden;
   }
 
   &__labels{
@@ -145,7 +150,6 @@
 @media (min-width: $tablet-portrait) {
 
   .where {
-    padding-bottom: 30px;
 
     &__title{
       margin-bottom: 27px;
@@ -153,7 +157,7 @@
     }
 
     &__map{
-      height: 514px;
+      height: 768px;
 
       &:before, &:after{
         transform: rotate(-1.1deg);
@@ -163,7 +167,9 @@
     }
 
     &__popup{
-      margin: -139px 36px 0 39px;
+      right: 36px;
+      bottom: 30px;
+      left: 39px;
       padding: 54px 31px 48px 63px;
       box-shadow: 0 0 50px rgba(0,0,0,.1);
     }
@@ -196,12 +202,14 @@
 @media (min-width: $desktop) {
 
   .where {
+    margin-top: -10px;
 
     &__map{
+      height: 820px;
 
       &:before, &:after{
-        transform: rotate(-1.2deg);
-        -webkit-transform: rotate(-1.2deg);
+        transform: rotate(-1deg);
+        -webkit-transform: rotate(-1deg);
       }
 
     }
@@ -218,8 +226,11 @@
 
     &__popup{
       max-width: 810px;
-      margin: -110px auto 0;
+      right: auto;
+      left: 50%;
       padding: 54px 40px 48px 71px;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
     }
 
     &__labels{

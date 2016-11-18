@@ -44,6 +44,24 @@
     padding-left: 10px;
     border-left: 6px solid #ffa019;
     line-height: 30px;
+
+    &_1{
+      border-left-color: #ffa019;
+    }
+
+    &_2{
+      border-left-color: #40beed;
+    }
+
+    &_3{
+      border-left-color: #80d64c;
+    }
+
+    &_4{
+      border-left-color: #ae58f0;
+    }
+
+
   }
 
 }
@@ -96,7 +114,17 @@
     }
 
     &__item {
+      flex-flow: wrap row;
+      justify-content: flex-start;
+      align-items: center;
       width: 356px!important;
+      text-align: left;
+
+      time:after{
+        margin: 0 5px;
+        content: '/';
+      }
+
     }
 
   }

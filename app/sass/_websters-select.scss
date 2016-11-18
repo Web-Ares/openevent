@@ -1,6 +1,9 @@
 .websters-select {
   overflow: hidden;
-  display: inline-block;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
   vertical-align: top;
   box-sizing: border-box;
   position: relative;
@@ -45,16 +48,25 @@
 
   &__item {
     overflow: hidden;
-    @include absoluteCenterY();
     @include proximanova-bold;
-    right: 20px;
-    left: 5px;
-    padding: 3px 9px 0;
+    padding: 0 29px 0 14px;
     box-sizing: border-box;
     white-space: nowrap;
     text-overflow: ellipsis;
     text-transform: uppercase;
     text-align: left;
+  }
+
+  &__date{
+    display: none;
+    font-size: 14px;
+    padding: 5px 29px 0 14px;
+  }
+
+  &_data{
+    .websters-select__date{
+      display: block;
+    }
   }
 
   &_mobile {

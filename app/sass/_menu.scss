@@ -147,6 +147,7 @@
     position: absolute;
     top: 19px;
     bottom: auto;
+    right: 20px;
     left: auto;
     visibility: visible;
     padding: 0;
@@ -256,8 +257,13 @@
 
 @media (min-width: $pre-desktop) {
 
-  .menu_footer {
-    right: -5px;
+  .menu{
+    right: 0;
+
+    &_footer {
+      right: -5px;
+    }
+
   }
 
 }

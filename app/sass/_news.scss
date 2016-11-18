@@ -1,6 +1,6 @@
 .news {
   position: relative;
-  padding: 35px 0 24px;
+  padding: 35px 0 51px;
 
   &:before{
     position: absolute;
@@ -112,7 +112,6 @@
 @media (min-width: $tablet-portrait) {
 
   .news {
-    padding-bottom: 43px;
 
     &:before{
       transform: rotate(-1.1deg);

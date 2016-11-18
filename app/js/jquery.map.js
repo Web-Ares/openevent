@@ -10,8 +10,9 @@ Location = function (obj) {
         _lat = _obj.attr('data-lat'),
         _lng = _obj.attr('data-lng'),
         _myLatLng = {lat: parseFloat(_lat), lng: parseFloat(_lng)},
-        _wherePopup = jQuery('.where__popup'),
-        _where__labels = jQuery('.where__labels'),
+        _wherePopup = $('.where__popup'),
+        _where__labels = $('.where__labels'),
+        _where__layout = $('.where__layout'),
         _map = null,
         _scroll = null,
         _window = jQuery(window),
@@ -33,6 +34,13 @@ Location = function (obj) {
                     _checkPlacemerk(location_id);
                 }
             });
+
+            _wherePopup.on( {
+                'click': function() {
+                    _initScroll();
+                    console.log(_scroll)
+                }
+            } );
 
         },
         _checkPlacemerk = function (id) {
@@ -112,7 +120,7 @@ Location = function (obj) {
             _map = new google.maps.Map(_obj[ 0 ], {
                 zoom: 10,
                 center: _myLatLng,
-                scrollwheel: true,
+                scrollwheel: false,
                 draggable: false
             });
 
@@ -150,7 +158,6 @@ Location = function (obj) {
         _init = function () {
             _initMap();
             _addEvents();
-            _initScroll();
         };
 
     _init();

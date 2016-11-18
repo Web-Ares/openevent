@@ -1,6 +1,5 @@
 .subscribe {
   position: relative;
-  z-index: 3;
 
   &__bg{
     display: flex;
@@ -130,6 +129,7 @@
 @media (min-width: $desktop) {
 
   .subscribe {
+    margin: -10px auto;
 
     &__bg{
 

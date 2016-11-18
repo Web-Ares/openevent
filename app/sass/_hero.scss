@@ -6,7 +6,7 @@
   height: 811px;
   text-align: center;
 
-  &:after{
+  /*&:after{
     position: absolute;
     bottom: -13px;
     left: -3px;
@@ -16,7 +16,7 @@
     transform: rotate(-2.2deg);
     -webkit-transform: rotate(-2.2deg);
     content: '';
-  }
+  }*/
 
   &_small{
     height: 563px;
@@ -33,6 +33,12 @@
 
     &-table, &-desktop{
       display: none;
+      width: 100%;
+    }
+
+    &-mobile {
+      display: block;
+      width: 100%;
     }
 
   }
@@ -48,6 +54,7 @@
     padding: 83px 13px 26px;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
+    pointer-events: none;
   }
 
   &__persons{
@@ -111,13 +118,40 @@
 
   }
 
+  &__button-next,
+  &__button-prev{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    background: url(../img/bg-arrow.png) no-repeat center #000;
+    text-indent: 999px;
+    z-index: 3;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color .3s ease, box-shadow .3s ease;
+    -webkit-transition: background-color .3s ease, box-shadow .3s ease;
+  }
+
+  &__button-next{
+    right: 10px;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+  }
+
+  &__button-prev{
+    right: 55px;
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {
 
   .hero {
     height: auto;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     font-size: 24px;
     line-height: 30px;
 
@@ -193,6 +227,25 @@
         display: none;
       }
 
+    }
+
+    &__button-next,
+    &__button-prev{
+      bottom: 28px;
+
+      &:hover{
+        background-color: #593691;
+        box-shadow: 0 5px 20px rgba(0,0,0,.2);
+      }
+
+    }
+
+    &__button-next{
+      right: 25px;
+    }
+
+    &__button-prev{
+      right: 70px;
     }
 
   }

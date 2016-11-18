@@ -20,6 +20,7 @@
             _visible = params.visible || 5,
             _device = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent ),
             _text = $( '<span class="websters-select__item"></span>' ),
+            _date = $( '<span class="websters-select__date"></span>' ),
             _subtext = $( '<span class="websters-select__subitem"></span>' ),
             _wrap = $( '<div class="websters-select"></div>' ),
             _window = $( window ),
@@ -29,7 +30,8 @@
 
         //private methods
         var _addWrap = function(){
-                var curText = '';
+                var curText = '',
+                    curVal = '';
 
                 _obj.css( {
                     opacity: 0
@@ -39,18 +41,23 @@
                 _wrap = _obj.parent();
                 _wrap.append( '<div class="websters-select__arrow"></div>' );
                 _obj.before( _text );
+                _obj.before( _date );
                 _obj.find( 'option' ).each( function(){
                     var curItem = $( this );
 
                     if( curItem.attr( 'selected' ) == 'selected' ){
                         curText = curItem.text();
+                        curVal = curItem.val();
                     }
+
                 } );
 
                 if( curText == '' ){
                     curText =  _obj.find( 'option').eq( 0 ).text();
+                    curVal =  _obj.find( 'option').eq( 0 ).val();
                 }
                 _text.text( curText );
+                _date.text( curVal );
             },
             _hidePopup = function(){
                 _opened = false;
@@ -75,13 +82,14 @@
             _constructor = function(){
                 _obj[ 0 ].obj = _self;
 
-                _addWrap();
                 _selectViewType();
+                _addWrap();
                 _onEvents();
             },
             _onEvents = function(){
                 _obj.on( 'change', function() {
                     _text.text( $( this ).find( 'option:selected' ).text() );
+                    _date.text( $( this ).find( 'option:selected' ).val() );
                 } );
 
                 if( _optionType >= 0 && !_device ){
@@ -122,7 +130,6 @@
             },
             _setCustom2 = function(){
                 _wrap.addClass( 'websters-select_data' );
-
             },
             _setMobileView = function(){
                 _wrap.addClass( 'websters-select_mobile' );

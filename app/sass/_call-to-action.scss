@@ -1,6 +1,5 @@
 .call-to-action {
   position: relative;
-  z-index: 3;
 
   &__bg{
     display: flex;
@@ -97,6 +96,8 @@
 @media (min-width: $desktop) {
 
   .call-to-action {
+    margin: -10px auto -50px;
+    z-index: 0;
 
     &__bg{
 

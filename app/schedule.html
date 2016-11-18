@@ -10,6 +10,7 @@
     <title>Title</title>
 
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/schedule-page.css">
 
 </head>
@@ -151,6 +152,17 @@
             <!-- schedule__layout -->
             <div class="schedule__layout">
 
+                <!-- schedule__title -->
+                <h2 class="schedule__title">
+                    <!-- speakers__title-icon -->
+                    <span class="schedule__title-icon">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                    <!-- /call-to-action__title-icon -->
+                    schedule
+                </h2>
+                <!-- /schedule__title -->
+
                 <!-- schedule__filters -->
                 <div class="schedule__filters">
 
@@ -217,7 +229,7 @@
                         <li><span>11:00</span></li>
                         <li><span>12:00</span></li>
                         <li><span>13:00</span></li>
-                        <li class="schedule__frame-coffee"><span>14:00</span></li>
+                        <li><span>14:00</span></li>
                         <li><span>15:00</span></li>
                         <li><span>16:00</span></li>
                         <li><span>17:00</span></li>
@@ -230,99 +242,181 @@
                     <!-- /schedule__marking -->
 
                     <!-- schedule__frame-item -->
-                    <div class="schedule__frame-item">
+                    <div class="schedule__frame-item swiper-container" data-view="2" data-group="1">
 
-                        <!-- schedule__venue -->
-                        <section class="schedule__venue">
+                        <!-- swiper-wrapper -->
+                        <div class="swiper-wrapper">
 
-                            <h2 class="schedule__topic">Venue name 1</h2>
+                            <!-- schedule__venue -->
+                            <section class="swiper-slide schedule__venue">
 
-                            <ul>
-                                <li>
-                                    <!-- schedule__track -->
-                                    <a href="#" class="schedule__track">
-                                        <time datetime="2016-05-15T7:00" class="schedule__track-time">7:00 - 8:00</time>
-                                        <b>Equal Opportunities <br/> in the Workplace</b>
-                                    </a>
-                                    <!-- /schedule__track -->
-                                </li>
-                                <li>
-                                    <!-- schedule__track -->
-                                    <a href="#" class="schedule__track">
-                                        <time datetime="2016-05-15T7:00" class="schedule__track-time">7:00 - 8:00</time>
-                                        <b>Best Places to Work <br/> Strategies</b>
-                                    </a>
-                                    <!-- /schedule__track -->
-                                </li>
-                                <li class="schedule__frame-half">
-                                    <div class="schedule__free-time"></div>
-                                    <!-- schedule__track -->
-                                    <a href="#" class="schedule__track schedule__track_continue">
-                                        <time datetime="2016-05-15T7:00" class="schedule__track-time">7:00 - 8:00</time>
-                                        <b>Best Places to Work Strategies</b>
-                                    </a>
-                                    <!-- /schedule__track -->
-                                </li>
-                                <li>
-                                    <!-- schedule__track -->
-                                    <a href="#" class="schedule__track schedule__track_continue schedule__track_duplicate"></a>
-                                    <!-- /schedule__track -->
-                                </li>
-                                <li>
-                                    <!-- schedule__track -->
-                                    <a href="#" class="schedule__track schedule__track_continue schedule__track_duplicate"></a>
-                                    <!-- /schedule__track -->
-                                </li>
-                                <li>
-                                    <!-- schedule__track -->
-                                    <a href="#" class="schedule__track schedule__track_duplicate"></a>
-                                    <!-- /schedule__track -->
-                                </li>
-                                <li class="schedule__frame-coffee">
-                                    <time datetime="2016-05-15T7:00" class="schedule__track-time">13:00 - 14:00</time>
-                                    <i class="fa fa-coffee"></i>
-                                    <b>Coffee Time</b>
-                                </li>
-                                <li>
-                                    <!-- schedule__track -->
-                                    <a href="#" class="schedule__track">
-                                        <time datetime="2016-05-15T7:00" class="schedule__track-time">14:00 - 15:00</time>
-                                        <b>Growing in Social Media Business</b>
-                                    </a>
-                                    <!-- /schedule__track -->
-                                </li>
-                                <li>
-                                    <!-- schedule__track -->
-                                    <a href="#" class="schedule__track">
-                                        <time datetime="2016-05-15T7:00" class="schedule__track-time">14:00 - 15:00</time>
-                                        <b>Equal Opportunities in the Workplace</b>
-                                    </a>
-                                    <!-- /schedule__track -->
-                                </li>
-                            </ul>
+                                <h2 class="schedule__topic">Venue name 1</h2>
 
-                        </section>
-                        <!-- /schedule__venue -->
+                                <!-- schedule__venue-frame -->
+                                <ul class="schedule__venue-frame">
+                                    <li class="schedule__frame-li schedule__li_1" data-start="7:00" data-end="8:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">7:00 - 8:00</time>
+                                            <b>Equal Opportunities <br/> in the Workplace</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                    <li class="schedule__frame-li schedule__li_2" data-start="8:00" data-end="9:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">8:00 - 9:00</time>
+                                            <b>Best Places to Work <br/> Strategies</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                    <li class="schedule__frame-li schedule__li_3" data-start="9:30" data-end="12:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">7:00 - 8:00</time>
+                                            <b>Best Places to Work Strategies</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                    <li class="schedule__frame-coffee schedule__frame-li" data-start="13:00" data-end="14:00">
+                                        <time datetime="2016-05-15T7:00" class="schedule__track-time">13:00 - 14:00</time>
+                                        <i class="fa fa-coffee"></i>
+                                        <b>Coffee Time</b>
+                                    </li>
+                                    <li class="schedule__frame-li schedule__li_4" data-start="14:00" data-end="15:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">14:00 - 15:00</time>
+                                            <b>Growing in Social Media Business</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                    <li class="schedule__frame-li schedule__li_1" data-start="15:30" data-end="17:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">14:00 - 15:00</time>
+                                            <b>Equal Opportunities in the Workplace</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                </ul>
+                                <!-- /schedule__venue-frame -->
 
-                        <!-- schedule__venue -->
-                        <section class="schedule__venue">
+                            </section>
+                            <!-- /schedule__venue -->
 
-                            <h2 class="schedule__topic">Venue name 2</h2>
+                            <!-- schedule__venue -->
+                            <section class="swiper-slide schedule__venue">
 
-                            <ul>
+                                <h2 class="schedule__topic">Venue name 2</h2>
 
-                                <li>
-                                    <!-- schedule__track -->
-                                    <a href="#" class="schedule__track">
-                                        <time datetime="2016-05-15T7:00" class="schedule__track-time">7:00 - 8:00</time>
-                                        <b>Equal Opportunities <br/> in the Workplace</b>
-                                    </a>
-                                    <!-- /schedule__track -->
-                                </li>
-                            </ul>
+                                <!-- schedule__venue-frame -->
+                                <ul class="schedule__venue-frame">
+                                    <li class="schedule__frame-coffee schedule__frame-li" data-start="13:00" data-end="14:00">
+                                        <time datetime="2016-05-15T7:00" class="schedule__track-time">13:00 - 14:00</time>
+                                        <i class="fa fa-coffee"></i>
+                                        <b>Coffee Time</b>
+                                    </li>
+                                    <li class="schedule__frame-li" data-start="15:30" data-end="17:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">15:30 - 17:00</time>
+                                            <b>Equal Opportunities <br/> in the Workplace</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                </ul>
+                                <!-- schedule__venue-frame -->
 
-                        </section>
-                        <!-- /schedule__venue -->
+                            </section>
+                            <!-- /schedule__venue -->
+
+                            <!-- schedule__venue -->
+                            <section class="swiper-slide schedule__venue">
+
+                                <h2 class="schedule__topic">Venue name 3</h2>
+
+                                <!-- schedule__venue-frame -->
+                                <ul class="schedule__venue-frame">
+                                    <li class="schedule__frame-li schedule__li_1" data-start="7:00" data-end="8:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">7:00 - 8:00</time>
+                                            <b>Equal Opportunities <br/> in the Workplace</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                    <li class="schedule__frame-li schedule__li_2" data-start="8:00" data-end="9:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">8:00 - 9:00</time>
+                                            <b>Best Places to Work <br/> Strategies</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                    <li class="schedule__frame-li schedule__li_3" data-start="9:30" data-end="12:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">7:00 - 8:00</time>
+                                            <b>Best Places to Work Strategies</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                    <li class="schedule__frame-coffee schedule__frame-li" data-start="12:00" data-end="13:00">
+                                        <time datetime="2016-05-15T7:00" class="schedule__track-time">13:00 - 14:00</time>
+                                        <i class="fa fa-coffee"></i>
+                                        <b>Coffee Time</b>
+                                    </li>
+                                    <li class="schedule__frame-li schedule__li_4" data-start="14:00" data-end="15:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">14:00 - 15:00</time>
+                                            <b>Growing in Social Media Business</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                    <li class="schedule__frame-li schedule__li_1" data-start="15:30" data-end="17:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">14:00 - 15:00</time>
+                                            <b>Equal Opportunities in the Workplace</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                </ul>
+                                <!-- /schedule__venue-frame -->
+
+                            </section>
+                            <!-- /schedule__venue -->
+
+                            <!-- schedule__venue -->
+                            <section class="swiper-slide schedule__venue">
+
+                                <h2 class="schedule__topic">Venue name 4</h2>
+
+                                <!-- schedule__venue-frame -->
+                                <ul class="schedule__venue-frame">
+                                    <li class="schedule__frame-coffee schedule__frame-li" data-start="13:00" data-end="14:00">
+                                        <time datetime="2016-05-15T7:00" class="schedule__track-time">13:00 - 14:00</time>
+                                        <i class="fa fa-coffee"></i>
+                                        <b>Coffee Time</b>
+                                    </li>
+                                    <li class="schedule__frame-li" data-start="15:30" data-end="17:00">
+                                        <!-- schedule__track -->
+                                        <a href="#" class="schedule__track">
+                                            <time datetime="2016-05-15T7:00" class="schedule__track-time">15:30 - 17:00</time>
+                                            <b>Equal Opportunities <br/> in the Workplace</b>
+                                        </a>
+                                        <!-- /schedule__track -->
+                                    </li>
+                                </ul>
+                                <!-- schedule__venue-frame -->
+
+                            </section>
+                            <!-- /schedule__venue -->
+
+                        </div>
+                        <!-- /swiper-wrapper -->
 
                     </div>
                     <!-- /schedule__frame-item -->
@@ -337,31 +431,31 @@
                 <div class="schedule__tracks">
 
                     <!-- schedule__tracks-item -->
-                    <a href="#" class="schedule__tracks-item" style="border-left-color: #ffa019">
+                    <a href="#" class="schedule__tracks-item schedule__tracks_1">
                         Track name 1
                     </a>
                     <!-- /schedule__tracks-item -->
 
                     <!-- schedule__tracks-item -->
-                    <a href="#" class="schedule__tracks-item" style="border-left-color: #40beed">
+                    <a href="#" class="schedule__tracks-item schedule__tracks_2">
                         Track name 2
                     </a>
                     <!-- /schedule__tracks-item -->
 
                     <!-- schedule__tracks-item -->
-                    <a href="#" class="schedule__tracks-item" style="border-left-color: #80d64c">
+                    <a href="#" class="schedule__tracks-item schedule__tracks_3">
                         Track name 3
                     </a>
                     <!-- /schedule__tracks-item -->
 
                     <!-- schedule__tracks-item -->
-                    <a href="#" class="schedule__tracks-item" style="border-left-color: #ae58f0">
+                    <a href="#" class="schedule__tracks-item schedule__tracks_4">
                         Track name 4
                     </a>
                     <!-- /schedule__tracks-item -->
 
                     <!-- schedule__tracks-item -->
-                    <a href="#" class="schedule__tracks-item" style="border-left-color: #f54f66; color: #9d9d9d">
+                    <a href="#" class="schedule__tracks-item schedule__tracks_off">
                         Track label off
                     </a>
                     <!-- /schedule__tracks-item -->
@@ -511,6 +605,7 @@
     <!-- /site -->
 
     <script src="js/vendors/jquery-2.2.1.min.js"></script>
+    <script src="js/vendors/swiper.jquery.min.js"></script>
     <script src="js/index.min.js"></script>
 </body>
 </html>

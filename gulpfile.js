@@ -23,7 +23,8 @@ var paths = {
                 'app/js/jquery.index.js',
                 'app/js/jquery.count-down.js',
                 'app/js/jquery.websters-select.js',
-                'app/js/jquery.map.js'
+                'app/js/jquery.map.js',
+                'app/js/jquery.schedule.js'
             ]
         }
     ],
@@ -34,7 +35,6 @@ var paths = {
     php: 'app/php/**/*',
     fonts: 'app/fonts/**/*'
 };
-
 
 gulp.task('clean', function (cb) {
     return del('dist', cb);
@@ -81,19 +81,19 @@ gulp.task('php', function () {
 gulp.task('styles', function () {
     return gulp.src(paths.styles)
         .pipe(sourcemaps.init())
-        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(sass({}).on('error', sass.logError))
         .pipe(autoprefixer({ browsers: ['last 2 versions'] }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/css'))
         .pipe(browserSync.stream());
 });
 
-gulp.task( 'scripts', function () {
+gulp.task('scripts', function () {
     for ( var i = 0; i < paths.scripts.length; i++ ){
         gulp.src( paths.scripts[ i ].contains )
             .pipe(sourcemaps.init())
             // .pipe(babel({presets: ['es2015']})) //for js6
-            .pipe(uglify())
+            //.pipe(uglify())
             .pipe(concat(paths.scripts[ i ].dist))
             .pipe(sourcemaps.write())
             .pipe(gulp.dest('dist/js/'));

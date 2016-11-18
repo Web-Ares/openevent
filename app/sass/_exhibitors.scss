@@ -102,7 +102,7 @@
     }
 
     .websters-select{
-      display: block;
+      display: flex;
       margin: 0 auto 8px;
       max-width: 333px;
     }
@@ -162,6 +162,7 @@
 @media (min-width: $desktop) {
 
   .exhibitors {
+    margin: 0 auto;
     padding: 58px 0 121px;
 
     &:before{
@@ -183,6 +184,8 @@
     }
 
     &__wrap{
+      max-width: 1290px;
+      margin: 0 auto;
       padding: 0;
     }
 

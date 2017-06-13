@@ -619,8 +619,6 @@ $(function(){
                         dataSRC = null,
                         preloader = null;
 
-                    console.log('ddd');
-
                     if ( $( this ).hasClass( 'media-gallery__item_video' ) ){
 
                         preloader = '<i class="fa fa-spinner fa-spin"></i>';
